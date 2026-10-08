@@ -1,0 +1,38 @@
+[
+  {
+    "q": {
+      "en": "When and where is V-AFRICA 2026 taking place?",
+      "fr": "Quand et où a lieu V-AFRICA 2026 ?",
+      "ru": "Когда и где состоится V-AFRICA 2026?",
+      "ar": "متى وأين سيعقد V-AFRICA 2026؟",
+      "id": "Kapan dan di mana V-AFRICA 2026 berlangsung?",
+      "tr": "V-AFRICA 2026 ne zaman ve nerede gerçekleşecek?"
+    },
+    "a": {
+      "en": "V-AFRICA 2026 will take place from 17-20 November 2026.",
+      "fr": "V-AFRICA 2026 aura lieu du 17 au 20 novembre 2026.",
+      "ru": "V-AFRICA 2026 пройдет с 17 по 20 ноября 2026 года.",
+      "ar": "سيعقد V-AFRICA 2026 في الفترة من 17 إلى 20 نوفمبر 2026.",
+      "id": "V-AFRICA 2026 akan berlangsung dari 17-20 November 2026.",
+      "tr": "V-AFRICA 2026, 17-20 Kasım 2026 tarihleri arasında gerçekleşecektir."
+    }
+  },
+  {
+    "q": {
+      "en": "How can I purchase tickets?",
+      "fr": "Comment puis-je acheter des billets ?",
+      "ru": "Как я могу приобрести билеты?",
+      "ar": "كيف يمكنني شراء التذاكر؟",
+      "id": "Bagaimana cara membeli tiket?",
+      "tr": "Biletleri nasıl satın alabilirim?"
+    },
+    "a": {
+      "en": "Tickets are exclusively available on <strong>VShoppe Pro</strong>. Log in to your account to secure your spot today!",
+      "fr": "Les billets sont exclusivement disponibles sur <strong>VShoppe Pro</strong>. Connectez-vous à votre compte pour réserver votre place dès aujourd'hui !",
+      "ru": "Билеты доступны исключительно на <strong>VShoppe Pro</strong>. Войдите в свой аккаунт, чтобы забронировать место уже сегодня!",
+      "ar": "التذاكر متاحة حصريًا على <strong>VShoppe Pro</strong>. سجل الدخول إلى حسابك لتأمين مكانك اليوم!",
+      "id": "Tiket tersedia secara eksklusif di <strong>VShoppe Pro</strong>. Masuk ke akun Anda untuk memesan tempat hari ini!",
+      "tr": "Biletler sadece <strong>VShoppe Pro</strong> üzerinden temin edilebilir. Bugün yerinizi ayırtmak için hesabınıza giriş yapın!"
+    }
+  }
+]

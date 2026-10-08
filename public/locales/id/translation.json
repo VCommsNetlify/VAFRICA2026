@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "BERANDA",
+    "dreamers_diary": "DIARI PEMIMPI",
+    "venue_map": "PETA LOKASI",
+    "faq": "FAQ",
+    "languages": "BAHASA"
+  },
+  "hero": {
+    "logo_alt": "Logo V-AFRICA 2026",
+    "countdown": { "days": "HARI", "hours": "JAM", "mins": "MENIT", "secs": "DETIK" },
+    "heading_part1": "BERSIAPLAH UNTUK PULANG KE",
+    "heading_part2": "V-AFRICA 2026!",
+    "event_date": "17-20 NOVEMBER 2026",
+    "cta_button": "Tiket tersedia SEKARANG di VShoppe Pro"
+  },
+  "stories": {
+    "banner": "BERITA & PEMBARUAN ACARA",
+    "subheader": "Selalu ketahui apa yang terjadi di V-AFRICA 2026!",
+    "featured": "CERITA PILIHAN"
+  },
+  "filter": {
+    "all_media": "SEMUA MEDIA",
+    "videos": "VIDEO",
+    "articles": "ARTIKEL",
+    "all_cats": "SEMUA KATEGORI",
+    "all_videos": "SEMUA VIDEO",
+    "teasers": "TISER",
+    "invite_videos": "VIDEO UNDANGAN",
+    "campaign_videos": "VIDEO KAMPANYE",
+    "founders_dailies": "HARIAN PENDIRI",
+    "daily_highlights": "SOROTAN HARIAN",
+    "post_event_videos": "VIDEO PASCA-ACARA",
+    "all_articles": "SEMUA ARTIKEL",
+    "pre_event_articles": "ARTIKEL PRA-ACARA",
+    "wrap_up_article": "ARTIKEL RANGKUMAN",
+    "daily_articles": "ARTIKEL HARIAN",
+    "post_event_articles": "ARTIKEL PASCA-ACARA",
+    "all_days": "SEMUA HARI",
+    "reg_day": "HARI PENDAFTARAN",
+    "day_1": "HARI 1",
+    "day_2": "HARI 2",
+    "day_3": "HARI 3",
+    "day_4": "HARI 4",
+    "reset": "RESET"
+  },
+  "gallery": {
+    "title": "GALERI FOTO",
+    "subtitle": "Telusuri momen-momen sempurna yang kita bagikan bersama!",
+    "reg": "HARI PENDAFTARAN",
+    "day1": "HARI 1",
+    "day2": "HARI 2",
+    "day3": "HARI 3",
+    "day4": "HARI 4"
+  },
+  "faq": {
+    "title": "PERTANYAAN YANG SERING DIAJUKAN"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "BERLANGGANAN BULETIN<br/>THE V <u>SECARA GRATIS!</u>",
+      "copy": "Dapatkan berita dan pembaruan terbaru melalui email!",
+      "placeholder": "Alamat Email Anda",
+      "sending": "Mengirim...",
+      "success": "Terima kasih telah bergabung!",
+      "duplicate": "Email ini sudah terdaftar!"
+    },
+    "button": "GABUNG",
+    "note": "<em>CATATAN: Jika Anda sudah menerima buletin dari The V, Anda TIDAK PERLU memberikan alamat email Anda lagi.</em>",
+    "social": {
+      "title": "TETAP TERHUBUNG DENGAN KAMI!"
+    }
+  },
+  "quick": {
+    "title": "TAUTAN CEPAT",
+    "home": "Beranda",
+    "story": "Diari Pemimpi",
+    "map": "Peta Lokasi",
+    "vkids": "V-Kids & V-Teens 2026",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "buy_ticket": "BELI TIKET SEKARANG"
+  },
+  "lang": {
+    "select": "PILIH BAHASA:"
+  }
+}

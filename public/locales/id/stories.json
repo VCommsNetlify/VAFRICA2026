@@ -1,0 +1,24 @@
+[
+  {
+    "id": 2,
+    "title": "Register Now as InService for V-Africa 2026",
+    "desc": "Applications are now open!",
+    "date": "October 6, 2026",
+    "type": "article",
+    "category": "pre_event_articles",
+    "day": "",
+    "image": "/src/assets/articles/10062026-register-now-as-inservice-for-v-africa-2026.webp",
+    "actionText": "READ ARTICLE"
+  },
+  {
+    "id": 1,
+    "title": "We're Coming Home to V-Africa 2026!",
+    "desc": "Get ready, Ghana!",
+    "date": "September 15, 2026",
+    "type": "article",
+    "category": "pre_event_articles",
+    "day": "",
+    "image": "/src/assets/articles/09152026-were-coming-home-to-v-africa-2026.webp",
+    "actionText": "READ ARTICLE"
+  }
+]

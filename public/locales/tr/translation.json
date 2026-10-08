@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "ANASAYFA",
+    "dreamers_diary": "HAYALPERESTLERİN GÜNLÜĞÜ",
+    "venue_map": "ETKİNLİK HARİTASI",
+    "faq": "SSS",
+    "languages": "DİLLER"
+  },
+  "hero": {
+    "logo_alt": "V-Africa 2026 Logosu",
+    "countdown": {
+      "days": "GÜN",
+      "hours": "SAAT",
+      "mins": "DK",
+      "secs": "SN"
+    },
+    "heading_part1": "EVE DÖNMEYE HAZIRLANIN:",
+    "heading_part2": "V-AFRICA 2026!",
+    "event_date": "17-20 KASIM 2026",
+    "cta_button": "Biletler ŞİMDİ VShoppe Pro'da Satışta"
+  },
+  "stories": {
+    "banner": "HABERLER VE GÜNCELLEMELER",
+    "subheader": "V-AFRICA 2026'da olup bitenlerden her zaman haberdar olun!",
+    "featured": "ÖNE ÇIKAN HİKAYELER"
+  },
+  "filter": {
+    "all_media": "TÜM MEDYA",
+    "videos": "VİDEOLAR",
+    "articles": "MAKALELER",
+    "all_cats": "TÜM KATEGORİLER",
+    "all_videos": "TÜM VİDEOLAR",
+    "teasers": "TANITIMLAR",
+    "invite_videos": "DAVET VİDEOLARI",
+    "campaign_videos": "KAMPANYA VİDEOLARI",
+    "founders_dailies": "KURUCULARIN GÜNLÜĞÜ",
+    "daily_highlights": "GÜNÜN ÖNE ÇIKANLARI",
+    "post_event_videos": "ETKİNLİK SONRASI VİDEOLAR",
+    "all_articles": "TÜM MAKALELER",
+    "pre_event_articles": "ETKİNLİK ÖNCESİ MAKALELER",
+    "wrap_up_article": "ÖZET MAKALE",
+    "daily_articles": "GÜNLÜK MAKALELER",
+    "post_event_articles": "ETKİNLİK SONRASI MAKALELER",
+    "all_days": "TÜM GÜNLER",
+    "reg_day": "KAYIT GÜNÜ",
+    "day_1": "1. GÜN",
+    "day_2": "2. GÜN",
+    "day_3": "3. GÜN",
+    "day_4": "4. GÜN",
+    "reset": "SIFIRLA"
+  },
+  "gallery": {
+    "title": "FOTOĞRAF GALERİSİ",
+    "subtitle": "Birlikte paylaştığımız mükemmel anlara göz atın!",
+    "reg": "KAYIT GÜNÜ",
+    "day1": "1. GÜN",
+    "day2": "2. GÜN",
+    "day3": "3. GÜN",
+    "day4": "4. GÜN"
+  },
+  "faq": {
+    "title": "SIKÇA SORULAN SORULAR"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "THE V BÜLTENİNE <u>ÜCRETSİZ</u> ABONE OLUN!",
+      "copy": "En son haberleri ve güncellemeleri e-posta ile alın!",
+      "placeholder": "E-posta Adresiniz",
+      "sending": "Gönderiliyor...",
+      "success": "Katıldığınız için teşekkürler!",
+      "duplicate": "Bu e-posta adresi zaten kayıtlı!"
+    },
+    "button": "KATIL",
+    "note": "<em>NOT: The V'den zaten bülten alıyorsanız, e-posta adresinizi tekrar girmenize GEREK YOKTUR.</em>",
+    "social": {
+      "title": "BİZİMLE İLETİŞİMDE KALIN!"
+    }
+  },
+  "quick": {
+    "title": "HIZLI BAĞLANTILAR",
+    "home": "Anasayfa",
+    "story": "Hayalperestlerin Günlüğü",
+    "map": "Etkinlik Haritası",
+    "vkids": "V-Kids & V-Teens 2026",
+    "faq": "SSS"
+  },
+  "cta": {
+    "buy_ticket": "BİLETİ ŞİMDİ AL"
+  },
+  "lang": {
+    "select": "DİL SEÇİN:"
+  }
+}

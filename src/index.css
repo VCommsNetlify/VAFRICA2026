@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@800&display=swap');
+@import "tailwindcss";
+
+/* Load your local Apotek font */
+@font-face {
+  font-family: 'Apotek';
+  src: url('/fonts/Apotek-ExtraCondBold.otf');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tell Tailwind v4 to create custom utility classes for them */
+@theme {
+  --font-apotek: 'Apotek', sans-serif;
+  --font-barlow: 'Barlow', sans-serif;
+}

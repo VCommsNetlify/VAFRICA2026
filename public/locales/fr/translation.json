@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "ACCUEIL",
+    "dreamers_diary": "JOURNAL DES RÊVEURS",
+    "venue_map": "PLAN DU SITE",
+    "faq": "FAQ",
+    "languages": "LANGUES"
+  },
+  "hero": {
+    "logo_alt": "Logo V-AFRICA 2026",
+    "countdown": { "days": "JOURS", "hours": "HEURES", "mins": "MIN", "secs": "SEC" },
+    "heading_part1": "PRÉPAREZ-VOUS À RENTRER À LA MAISON POUR",
+    "heading_part2": "V-AFRICA 2026 !",
+    "event_date": "17-20 NOVEMBRE 2026",
+    "cta_button": "Les billets sont disponibles DÈS MAINTENANT sur VShoppe Pro"
+  },
+  "stories": {
+    "banner": "ACTUALITÉS & MISES À JOUR DE L'ÉVÉNEMENT",
+    "subheader": "Soyez toujours informé de ce qui se passe à V-AFRICA 2026 !",
+    "featured": "À LA UNE"
+  },
+  "filter": {
+    "all_media": "TOUS LES MÉDIAS",
+    "videos": "VIDÉOS",
+    "articles": "ARTICLES",
+    "all_cats": "TOUTES LES CATÉGORIES",
+    "all_videos": "TOUTES LES VIDÉOS",
+    "teasers": "TEASERS",
+    "invite_videos": "VIDÉOS D'INVITATION",
+    "campaign_videos": "VIDÉOS DE CAMPAGNE",
+    "founders_dailies": "JOURNAUX DES FONDATEURS",
+    "daily_highlights": "POINTS FORTS DU JOUR",
+    "post_event_videos": "VIDÉOS POST-ÉVÉNEMENT",
+    "all_articles": "TOUS LES ARTICLES",
+    "pre_event_articles": "ARTICLES PRÉ-ÉVÉNEMENT",
+    "wrap_up_article": "ARTICLE DE SYNTHÈSE",
+    "daily_articles": "ARTICLES QUOTIDIENS",
+    "post_event_articles": "ARTICLES POST-ÉVÉNEMENT",
+    "all_days": "TOUS LES JOURS",
+    "reg_day": "JOUR D'INSCRIPTION",
+    "day_1": "JOUR 1",
+    "day_2": "JOUR 2",
+    "day_3": "JOUR 3",
+    "day_4": "JOUR 4",
+    "reset": "RÉINITIALISER"
+  },
+  "gallery": {
+    "title": "GALERIE PHOTO",
+    "subtitle": "Parcourez les moments inoubliables que nous avons partagés ensemble !",
+    "reg": "JOUR D'INSCRIPTION",
+    "day1": "JOUR 1",
+    "day2": "JOUR 2",
+    "day3": "JOUR 3",
+    "day4": "JOUR 4"
+  },
+  "faq": {
+    "title": "FOIRE AUX QUESTIONS"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "ABONNEZ-VOUS À LA NEWSLETTER<br/>DE THE V <u>GRATUITEMENT !</u>",
+      "copy": "Recevez les dernières actualités et mises à jour par e-mail !",
+      "placeholder": "Votre adresse e-mail",
+      "sending": "Envoi en cours...",
+      "success": "Merci de nous avoir rejoint !",
+      "duplicate": "Cet e-mail est déjà enregistré !"
+    },
+    "button": "S'INSCRIRE",
+    "note": "<em>REMARQUE : Si vous recevez déjà les newsletters de The V, vous N'AVEZ PLUS BESOIN de fournir votre adresse e-mail.</em>",
+    "social": {
+      "title": "RESTEZ CONNECTÉS AVEC NOUS !"
+    }
+  },
+  "quick": {
+    "title": "LIENS RAPIDES",
+    "home": "Accueil",
+    "story": "Journal des Rêveurs",
+    "map": "Plan du site",
+    "vkids": "V-Kids & V-Teens 2026",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "buy_ticket": "ACHETER UN BILLET MAINTENANT"
+  },
+  "lang": {
+    "select": "CHOISIR LA LANGUE :"
+  }
+}

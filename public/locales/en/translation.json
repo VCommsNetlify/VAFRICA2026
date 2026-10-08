@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "HOME",
+    "dreamers_diary": "DREAMERS' DIARY",
+    "venue_map": "VENUE MAP",
+    "faq": "FAQ",
+    "languages": "LANGUAGES"
+  },
+  "hero": {
+    "logo_alt": "V-Africa 2026 Logo",
+    "countdown": { "days": "DAYS", "hours": "HOURS", "mins": "MINS", "secs": "SECS" },
+    "heading_part1": "GET READY TO COME HOME TO",
+    "heading_part2": "V-AFRICA 2026!",
+    "event_date": "17-20 NOVEMBER 2026",
+    "cta_button": "Tickets are available NOW on VShoppe Pro"
+  },
+  "stories": {
+    "banner": "EVENT NEWS & UPDATES",
+    "subheader": "Always know what's happening at V-AFRICA 2026!",
+    "featured": "FEATURED STORIES"
+  },
+  "filter": {
+  "all_media": "ALL MEDIA",
+  "videos": "VIDEOS",
+  "articles": "ARTICLES",
+  "all_cats": "ALL CATEGORIES",
+  "all_videos": "ALL VIDEOS",
+  "teasers": "TEASERS",
+  "invite_videos": "INVITE VIDEOS",
+  "campaign_videos": "CAMPAIGN VIDEOS",
+  "founders_dailies": "FOUNDERS DAILIES",
+  "daily_highlights": "DAILY HIGHLIGHTS",
+  "post_event_videos": "POST-EVENT VIDEOS",
+  "all_articles": "ALL ARTICLES",
+  "pre_event_articles": "PRE-EVENT ARTICLES",
+  "wrap_up_article": "WRAP UP ARTICLE",
+  "daily_articles": "DAILY ARTICLES",
+  "post_event_articles": "POST-EVENT ARTICLES",
+  "all_days": "ALL DAYS",
+  "reg_day": "REGISTRATION DAY",
+  "day_1": "DAY 1",
+  "day_2": "DAY 2",
+  "day_3": "DAY 3",
+  "day_4": "DAY 4",
+  "reset": "RESET"
+},
+  "gallery": {
+    "title": "PHOTO GALLERY",
+    "subtitle": "Browse through the picture-perfect moments we shared together!",
+    "reg": "REGISTRATION DAY",
+    "day1": "DAY 1",
+    "day2": "DAY 2",
+    "day3": "DAY 3",
+    "day4": "DAY 4"
+  },
+  "faq": {
+    "title": "FREQUENTLY ASKED QUESTIONS"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "SUBSCRIBE TO THE V'S<br/>NEWSLETTER <u>FOR FREE!</u>",
+      "copy": "Get the latest news and updates via email!",
+      "placeholder": "Your Email Address",
+      "sending": "Sending...",
+      "success": "Thanks for joining!",
+      "duplicate": "This email is already registered!"
+    },
+    "button": "JOIN",
+    "note": "<em>TAKE NOTE: If you’re already receiving newsletters from The V, you DON’T have to provide your email address anymore.</em>",
+    "social": {
+      "title": "STAY CONNECTED WITH US!"
+    }
+  },
+  "quick": {
+    "title": "QUICK LINKS",
+    "home": "Home",
+    "story": "Dreamers' Diary",
+    "map": "Venue Map",
+    "vkids": "V-Kids & V-Teens 2026",
+    "faq": "FAQ"
+  },
+  "cta": {
+  "buy_ticket": "BUY TICKET NOW"
+},
+"lang": {
+    "select": "SELECT LANGUAGE:"
+  }
+}
