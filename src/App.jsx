@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import DreamersDiary from './components/DreamersDiary';
-import Gallery from './components/Gallery';
+// import Gallery from './components/Gallery';
 import FAQ from './components/FAQ';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
@@ -25,7 +25,7 @@ function App() {
       <main>
         <Hero />
         <DreamersDiary />
-        <Gallery />
+        {/* <Gallery /> */}
         <FAQ />
       </main>
       {/* <ScrollToTop /> */}
