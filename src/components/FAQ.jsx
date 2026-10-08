@@ -71,8 +71,9 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
+                    {/* ADDED LINK STYLING HERE */}
                     <div 
-                      className="p-5 md:p-6 pt-0 font-barlow text-sm md:text-base text-white/80 leading-relaxed prose prose-invert max-w-none"
+                      className="p-5 md:p-6 pt-0 font-barlow text-sm md:text-base text-white/80 leading-relaxed prose prose-invert max-w-none [&_a]:text-[#ffcc00] [&_a]:underline hover:[&_a]:text-yellow-300"
                       dangerouslySetInnerHTML={{ __html: answerText }}
                     />
                   </div>

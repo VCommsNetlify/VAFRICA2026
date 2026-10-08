@@ -8,7 +8,7 @@ export default function Hero() {
   const isFrench = i18n?.language === 'fr';
   const isRussian = i18n?.language === 'ru';
 
-  const TARGET_DATE = new Date('November 17, 2026 00:00:00').getTime();
+  const TARGET_DATE = new Date('November 18, 2026 00:00:00').getTime();
 
   const [timeLeft, setTimeLeft] = useState({
     days: '00',
