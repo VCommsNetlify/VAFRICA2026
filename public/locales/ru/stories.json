@@ -1,5 +1,16 @@
 [
   {
+  "id": 3,
+  "title": "V-Africa 2026: Это Наше Время!",
+  "desc": "Africa, Yɛn Mbrɛ Nie! С 17 по 20 ноября 2026 года V-Africa 2026 призывает самых смелых мечтателей континента вернуться домой в Аккру, Гана. Это больше, чем просто событие — это наш поворотный момент, чтобы REFORM, TRANSFORM, PERFORM!",
+  "date": "October 8, 2026",
+  "type": "video",
+  "category": "teasers",
+  "day": "",
+  "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
+  "actionText": "СМОТРЕТЬ ВИДЕО"
+},
+  {
     "id": 2,
     "title": "Register Now as InService for V-Africa 2026",
     "desc": "Applications are now open!",

@@ -1,5 +1,16 @@
 [
   {
+  "id": 3,
+  "title": "V-Africa 2026: Şimdi Bizim Zamanımız!",
+  "desc": "Africa, Yɛn Mbrɛ Nie! 17-20 Kasım 2026 tarihlerinde V-Africa 2026, kıtanın en cesur hayalperestlerini Akra, Gana'ya, evlerine çağırıyor. Bu bir etkinlikten çok daha fazlası — hayatımızı değiştirecek an: REFORM, TRANSFORM, PERFORM!",
+  "date": "October 8, 2026",
+  "type": "video",
+  "category": "teasers",
+  "day": "",
+  "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
+  "actionText": "VİDEOYU İZLE"
+},
+  {
     "id": 2,
     "title": "Register Now as InService for V-Africa 2026",
     "desc": "Applications are now open!",

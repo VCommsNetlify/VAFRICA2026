@@ -1,5 +1,16 @@
 [
   {
+  "id": 3,
+  "title": "V-Africa 2026: هذا وقتنا!",
+  "desc": "Africa, Yɛn Mbrɛ Nie! في الفترة من 17 إلى 20 نوفمبر 2026، تدعو V-Africa 2026 أجرأ الحالمين في القارة للعودة إلى الوطن في أكرا، غانا. هذا أكثر من مجرد حدث — إنها لحظتنا الحاسمة لتغيير الحياة: الإصلاح، التحول، والأداء!",
+  "date": "October 8, 2026",
+  "type": "video",
+  "category": "teasers",
+  "day": "",
+  "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
+  "actionText": "WATCH VIDEO"
+},
+  {
     "id": 2,
     "title": "Register Now as InService for V-Africa 2026",
     "desc": "Applications are now open!",

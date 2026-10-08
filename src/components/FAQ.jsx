@@ -17,9 +17,10 @@ export default function FAQ() {
 
   return (
     <section 
-      id="faqs" 
-      className="relative w-full py-16 md:py-24 px-4 md:px-8 bg-[#12062b] text-white"
-    >
+  id="faqs" 
+  className="relative w-full py-16 md:py-24 px-4 md:px-8 bg-cover bg-center bg-no-repeat text-white"
+  style={{ backgroundImage: "url('/faq-bg.jpg')" }}
+>
       <div className="max-w-4xl mx-auto relative z-10">
         
         {/* Section Header */}
