@@ -15,11 +15,11 @@ export default function Header() {
 
   const languages = [
     { code: 'en', label: 'English' },
-    { code: 'ar', label: 'العربية' },
-    { code: 'id', label: 'Bahasa Indonesia' },
+    // { code: 'ar', label: 'العربية' },
+    // { code: 'id', label: 'Bahasa Indonesia' },
     { code: 'fr', label: 'Français' },
-    { code: 'ru', label: 'Русский' },
-    { code: 'tr', label: 'Türkçe' }
+    // { code: 'ru', label: 'Русский' },
+    // { code: 'tr', label: 'Türkçe' }
   ];
 
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
