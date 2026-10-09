@@ -1,5 +1,17 @@
 [
   {
+    "id": 4,
+    "title": "VP Donna Imson-Lecaroz Invites You to V-Africa 2026",
+    "desc": "VP Donna Imson-Lecaroz a hâte de vous accueillir du 17 au 20 novembre 2026 à Accra, au Ghana !",
+    "date": "October 9, 2026",
+    "type": "video",
+    "category": "invite_videos",
+    "day": "",
+    "image": "/assets/articles/10092026-vp-donna-imson-lecaroz-invites-you-to-v-africa-2026.webp",
+    "actionText": "WATCH VIDEO",
+    "videoId": "6406525383112"
+  },
+  {
     "id": 3,
     "title": "V-Africa 2026: This is Our Time!",
     "desc": "Africa, Yɛn Mbrɛ Nie! From 17 to 20 November 2026...",
