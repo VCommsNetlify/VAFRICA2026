@@ -1,15 +1,16 @@
 [
   {
-  "id": 3,
-  "title": "V-Africa 2026: Ini Saatnya Kita!",
-  "desc": "Africa, Yɛn Mbrɛ Nie! Dari tanggal 17 hingga 20 November 2026, V-Africa 2026 memanggil para pemimpi terberani di benua ini untuk pulang ke Accra, Ghana. Ini lebih dari sekadar acara — ini adalah momen yang mengubah hidup kita untuk REFORM, TRANSFORM, PERFORM!",
-  "date": "October 8, 2026",
-  "type": "video",
-  "category": "teasers",
-  "day": "",
-  "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
-  "actionText": "TONTON VIDEO"
-},
+    "id": 3,
+    "title": "V-Africa 2026: This is Our Time!",
+    "desc": "Africa, Yɛn Mbrɛ Nie! From 17 to 20 November 2026...",
+    "date": "October 8, 2026",
+    "type": "video",
+    "category": "teasers",
+    "day": "",
+    "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
+    "actionText": "WATCH VIDEO",
+    "videoId": "6406464334112"
+  },
   {
     "id": 2,
     "title": "Register Now as InService for V-Africa 2026",
@@ -19,7 +20,8 @@
     "category": "pre_event_articles",
     "day": "",
     "image": "/assets/articles/10062026-register-now-as-inservice-for-v-africa-2026.webp",
-    "actionText": "READ ARTICLE"
+    "actionText": "READ ARTICLE",
+    "link": "https://the-v.net/en/news?id=10062026-register-now-as-inservice-for-v-africa-2026"
   },
   {
     "id": 1,
@@ -30,6 +32,7 @@
     "category": "pre_event_articles",
     "day": "",
     "image": "/assets/articles/09152026-were-coming-home-to-v-africa-2026.webp",
-    "actionText": "READ ARTICLE"
+    "actionText": "READ ARTICLE",
+    "link": "https://the-v.net/en/news?id=09152026-were-coming-home-to-v-africa-2026"
   }
 ]

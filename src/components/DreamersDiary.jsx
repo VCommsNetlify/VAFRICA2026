@@ -13,6 +13,9 @@ export default function DreamersDiary() {
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterDay, setFilterDay] = useState('all');
 
+  // Video modal state
+  const [activeVideoId, setActiveVideoId] = useState(null);
+
   const activeCardRef = useRef(null);
 
   useEffect(() => {
@@ -33,13 +36,28 @@ export default function DreamersDiary() {
     loadLocalizedStories();
   }, [i18n?.language]);
 
+  // Dynamically load Brightcove Player script when a video is clicked
+  useEffect(() => {
+    if (activeVideoId) {
+      const scriptId = 'brightcove-player-script';
+      let script = document.getElementById(scriptId);
+
+      if (!script) {
+        script = document.createElement('script');
+        script.id = scriptId;
+        script.src = 'https://players.brightcove.net/3745659807001/4JJdlFXsg_default/index.min.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [activeVideoId]);
+
   const filteredStories = stories.filter((story) => {
-  if (filterType !== 'all' && story.type !== filterType) return false;
-  if (filterCategory !== 'all' && story.category !== filterCategory) return false;
-  // If filterDay is selected (not 'all'), only match stories that have that specific day
-  if (filterDay !== 'all' && story.day !== filterDay) return false;
-  return true;
-});
+    if (filterType !== 'all' && story.type !== filterType) return false;
+    if (filterCategory !== 'all' && story.category !== filterCategory) return false;
+    if (filterDay !== 'all' && story.day !== filterDay) return false;
+    return true;
+  });
 
   const hasActiveFilters = filterType !== 'all' || filterCategory !== 'all' || filterDay !== 'all';
 
@@ -50,7 +68,7 @@ export default function DreamersDiary() {
   };
 
   useEffect(() => {
-    if (isPaused || filteredStories.length === 0) return;
+    if (isPaused || activeVideoId || filteredStories.length === 0) return;
 
     const interval = setInterval(() => {
       setActiveStory((prev) => {
@@ -61,7 +79,7 @@ export default function DreamersDiary() {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isPaused, filteredStories]);
+  }, [isPaused, activeVideoId, filteredStories]);
 
   useEffect(() => {
     if (activeCardRef.current) {
@@ -72,6 +90,15 @@ export default function DreamersDiary() {
       }
     }
   }, [activeStory]);
+
+  // Handle action click: Open Video Modal or Open Article in new tab
+  const handleAction = (story) => {
+    if (story.type === 'video' && story.videoId) {
+      setActiveVideoId(story.videoId);
+    } else if (story.type === 'article' && story.link) {
+      window.open(story.link, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   if (!activeStory) return null;
 
@@ -104,7 +131,10 @@ export default function DreamersDiary() {
           
           {/* Main Stage */}
           <div className="lg:col-span-7 xl:col-span-8 flex flex-col rounded-2xl overflow-hidden shadow-2xl h-full">
-            <div className="relative w-full aspect-video bg-black flex items-center justify-center group cursor-pointer overflow-hidden flex-shrink-0">
+            <div 
+              className="relative w-full aspect-video bg-black flex items-center justify-center group cursor-pointer overflow-hidden flex-shrink-0"
+              onClick={() => handleAction(activeStory)}
+            >
               <img src={activeStory.image} alt={activeStory.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               
               <div className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/30 backdrop-blur-sm border-2 border-white/70 flex items-center justify-center text-white shadow-2xl transition-transform group-hover:scale-110">
@@ -131,7 +161,7 @@ export default function DreamersDiary() {
               </div>
 
               <button 
-                onClick={() => alert(`Opening: ${activeStory.title}`)}
+                onClick={() => handleAction(activeStory)}
                 className="flex items-center gap-1.5 border border-white/90 rounded-full px-4 py-1.5 md:px-5 md:py-2 text-white font-bold text-xs tracking-wider uppercase hover:bg-white hover:text-orange-600 transition-all whitespace-nowrap shadow-md self-start sm:self-auto flex-shrink-0"
               >
                 <span className="text-[10px]">{isArticle ? '📄' : '▶'}</span> 
@@ -154,7 +184,7 @@ export default function DreamersDiary() {
                 value={filterType} 
                 onChange={(e) => {
                   setFilterType(e.target.value);
-                  setFilterCategory('all'); // Reset category when switching media type
+                  setFilterCategory('all');
                 }} 
                 className="min-w-0 w-full bg-transparent border border-[#2a1362] text-[#2a1362] text-[9px] md:text-[10px] lg:text-[11px] font-extrabold rounded-full px-2 py-1.5 cursor-pointer outline-none hover:bg-slate-100 transition-colors uppercase truncate"
               >
@@ -163,7 +193,7 @@ export default function DreamersDiary() {
                 <option value="article">{t('filter.articles', 'ARTICLES')}</option>
               </select>
 
-              {/* Category Dropdown (Only populated when VIDEOS or ARTICLES is selected) */}
+              {/* Category Dropdown */}
               <select 
                 value={filterCategory} 
                 onChange={(e) => setFilterCategory(e.target.value)} 
@@ -193,7 +223,7 @@ export default function DreamersDiary() {
                 )}
               </select>
 
-              {/* Days Dropdown (Includes Registration Day) */}
+              {/* Days Dropdown */}
               <select 
                 value={filterDay} 
                 onChange={(e) => setFilterDay(e.target.value)} 
@@ -262,6 +292,38 @@ export default function DreamersDiary() {
         </div>
 
       </div>
+
+      {/* Brightcove Video Modal */}
+      {activeVideoId && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setActiveVideoId(null)}
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setActiveVideoId(null)}
+              className="absolute top-3 right-3 z-10 w-10 h-10 bg-black/60 hover:bg-black text-white rounded-full flex items-center justify-center transition-colors font-bold"
+            >
+              ✕
+            </button>
+
+            <div className="relative aspect-video w-full">
+              <video-js
+                id="newsBrightcovePlayer"
+                data-account="3745659807001"
+                data-player="4JJdlFXsg"
+                data-embed="default"
+                data-video-id={activeVideoId}
+                controls
+                className="vjs-fluid w-full h-full"
+              ></video-js>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

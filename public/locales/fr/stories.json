@@ -1,14 +1,15 @@
 [
   {
     "id": 3,
-    "title": "V-Africa 2026: C’est notre heure!",
-    "desc": "Afrique, Yɛn Mbrɛ Nie! Du 17 au 20 novembre 2026, V-Africa 2026 invite les rêveurs les plus audacieux du continent à revenir chez eux, à Accra, au Ghana. C’est bien plus qu’un simple événement : c’est le moment qui changera nos vies, pour REFORM, TRANSFORM, REACT !",
+    "title": "V-Africa 2026: This is Our Time!",
+    "desc": "Africa, Yɛn Mbrɛ Nie! From 17 to 20 November 2026...",
     "date": "October 8, 2026",
     "type": "video",
     "category": "teasers",
     "day": "",
     "image": "/assets/articles/10082026-africa-this-is-our-time.webp",
-    "actionText": "WATCH VIDEO"
+    "actionText": "WATCH VIDEO",
+    "videoId": "6406464334112"
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "category": "pre_event_articles",
     "day": "",
     "image": "/assets/articles/10062026-register-now-as-inservice-for-v-africa-2026.webp",
-    "actionText": "READ ARTICLE"
+    "actionText": "READ ARTICLE",
+    "link": "https://the-v.net/en/news?id=10062026-register-now-as-inservice-for-v-africa-2026"
   },
   {
     "id": 1,
@@ -30,6 +32,7 @@
     "category": "pre_event_articles",
     "day": "",
     "image": "/assets/articles/09152026-were-coming-home-to-v-africa-2026.webp",
-    "actionText": "READ ARTICLE"
+    "actionText": "READ ARTICLE",
+    "link": "https://the-v.net/en/news?id=09152026-were-coming-home-to-v-africa-2026"
   }
 ]
