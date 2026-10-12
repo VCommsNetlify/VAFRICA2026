@@ -137,16 +137,25 @@ export default function DreamersDiary() {
             >
               <img src={activeStory.image} alt={activeStory.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               
-              <div className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/30 backdrop-blur-sm border-2 border-white/70 flex items-center justify-center text-white shadow-2xl transition-transform group-hover:scale-110">
-                {isArticle ? (
-                  <svg className="w-8 h-8 md:w-10 md:h-10 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                  </svg>
-                ) : (
-                  <svg className="w-8 h-8 md:w-10 md:h-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                )}
+              {/* Top-Left Corner Badge (Unobstructed Image) */}
+              <div className="absolute top-3 left-3 z-10 bg-black/60 backdrop-blur-md border border-white/20 text-white px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-md">
+                <span>{isArticle ? '📄' : '▶'}</span>
+                <span>{isArticle ? t('filter.articles', 'ARTICLE') : t('filter.videos', 'VIDEO')}</span>
+              </div>
+
+              {/* Hover-Only Action Overlay */}
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-xl transition-transform group-hover:scale-110">
+                  {isArticle ? (
+                    <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -261,13 +270,21 @@ export default function DreamersDiary() {
                     key={story.id}
                     ref={isActive ? activeCardRef : null}
                     onClick={() => setActiveStory(story)}
-                    className={`flex items-start gap-3 p-2.5 rounded-xl cursor-pointer transition-all duration-200 border ${
+                    className={`group flex items-start gap-3 p-2.5 rounded-xl cursor-pointer transition-all duration-200 border ${
                       isActive ? 'bg-purple-100/80 border-purple-400 shadow-sm' : 'bg-white hover:bg-slate-100/80 border-slate-200/80'
                     }`}
                   >
+                    {/* Thumbnail Frame */}
                     <div className="relative w-24 md:w-28 h-14 md:h-16 rounded-lg overflow-hidden flex-shrink-0 bg-slate-800 shadow-sm">
                       <img src={story.image} alt={story.title} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      
+                      {/* Thumbnail Top-Left Mini Badge */}
+                      <div className="absolute top-1 left-1 bg-black/60 backdrop-blur-xs text-white text-[8px] px-1.5 py-0.5 rounded font-bold uppercase">
+                        {isItemArticle ? '📄' : '▶'}
+                      </div>
+
+                      {/* Thumbnail Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                         <div className="w-5 h-5 rounded-full bg-white/90 text-slate-900 flex items-center justify-center text-[8px] shadow-md">
                           {isItemArticle ? '📄' : '▶'}
                         </div>
