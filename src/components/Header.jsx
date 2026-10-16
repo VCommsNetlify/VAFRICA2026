@@ -215,9 +215,9 @@ export default function Header() {
                 <a href="#video" onClick={(e) => handleSmoothScroll(e, '#video')} className="hover:text-orange-400">
                   {t('nav.event_news', 'EVENT NEWS & UPDATES')}
                 </a>
-                <a href="#gallery" onClick={(e) => handleSmoothScroll(e, '#gallery')} className="hover:text-orange-400">
+                {/* <a href="#gallery" onClick={(e) => handleSmoothScroll(e, '#gallery')} className="hover:text-orange-400">
                   {t('nav.gallery', 'PHOTO GALLERY')}
-                </a>
+                </a> */}
               </div>
             )}
           </div>
