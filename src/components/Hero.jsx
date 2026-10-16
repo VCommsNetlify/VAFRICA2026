@@ -1,174 +1,232 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+const EVENT_START = Date.parse('2026-11-18T00:00:00Z');
+
+const FLIP_MS = 600; // total flip duration (top half + bottom half)
+
+const pad = (n) => String(n).padStart(2, '0');
+
+function getTimeLeft() {
+  const diff = Math.max(0, EVENT_START - Date.now());
+  const s = Math.floor(diff / 1000);
+  return {
+    days: pad(Math.floor(s / 86400)), // becomes 3 digits automatically if ever >99
+    hours: pad(Math.floor((s % 86400) / 3600)),
+    mins: pad(Math.floor((s % 3600) / 60)),
+    secs: pad(s % 60),
+    done: diff === 0,
+  };
+}
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (!mq) return;
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener?.('change', onChange);
+    return () => mq.removeEventListener?.('change', onChange);
+  }, []);
+  return reduced;
+}
+
+
+const DIGIT_TEXT =
+  'font-barlow text-2xl md:text-4xl lg:text-5xl font-black text-[#3b1c8a] leading-none pt-1';
+
+function Half({ position, value, className = '' }) {
+  return (
+    <div className={`vf-half vf-${position} ${className}`}>
+      <span className={DIGIT_TEXT}>{value}</span>
+    </div>
+  );
+}
+
+function FlipDigit({ digit, reducedMotion }) {
+  const [state, setState] = useState({ current: digit, previous: digit, flipping: false });
+
+  // A new digit arrived: remember the old one and start a flip.
+  useEffect(() => {
+    setState((s) =>
+      s.current === digit ? s : { current: digit, previous: s.current, flipping: !reducedMotion }
+    );
+  }, [digit, reducedMotion]);
+
+  // End the flip once both leaves have finished.
+  useEffect(() => {
+    if (!state.flipping) return;
+    const id = setTimeout(() => setState((s) => ({ ...s, flipping: false })), FLIP_MS);
+    return () => clearTimeout(id);
+  }, [state.flipping, state.current]);
+
+  const { current, previous, flipping } = state;
+
+  return (
+    <div
+      className="vf-card relative w-7 h-10 md:w-10 md:h-14 lg:w-12 lg:h-16"
+      style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}
+    >
+      {/* Static leaves */}
+      <Half position="top" value={current} />
+      <Half position="bottom" value={flipping ? previous : current} />
+
+      {/* Moving leaves (remounted on every change so the animation restarts) */}
+      {flipping && (
+        <>
+          <Half key={`t-${previous}-${current}`} position="top" value={previous} className="vf-flap-top" />
+          <Half key={`b-${previous}-${current}`} position="bottom" value={current} className="vf-flap-bottom" />
+        </>
+      )}
+
+      {/* Hinge line + side notches */}
+      <div className="vf-hinge" />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  HERO                                                                */
+/* ------------------------------------------------------------------ */
+
 export default function Hero() {
   const { t, i18n } = useTranslation();
-  
+  const reducedMotion = usePrefersReducedMotion();
+
   // Language checks for responsive font scaling
   const isFrench = i18n?.language === 'fr';
   const isRussian = i18n?.language === 'ru';
 
-  const TARGET_DATE = new Date('November 18, 2026 00:00:00').getTime();
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: '00',
-    hours: '00',
-    mins: '00',
-    secs: '00'
-  });
+  // Computed right away, so the clock never shows 00:00:00:00 on load.
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = TARGET_DATE - now;
-
-      if (difference <= 0) {
-        clearInterval(timer);
-        setTimeLeft({ days: '00', hours: '00', mins: '00', secs: '00' });
-      } else {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeLeft({
-          days: String(days).padStart(2, '0'),
-          hours: String(hours).padStart(2, '0'),
-          mins: String(mins).padStart(2, '0'),
-          secs: String(secs).padStart(2, '0')
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [TARGET_DATE]);
+    let id;
+    const tick = () => {
+      const next = getTimeLeft();
+      setTimeLeft(next);
+      if (next.done) return;
+      // Re-sync to the start of each real second so ticks never drift or skip.
+      id = setTimeout(tick, 1000 - (Date.now() % 1000) + 10);
+    };
+    tick();
+    return () => clearTimeout(id);
+  }, []);
 
   const timeBlocks = [
-    { label: t('hero.countdown.days'), value: timeLeft.days },
-    { label: t('hero.countdown.hours'), value: timeLeft.hours },
-    { label: t('hero.countdown.mins'), value: timeLeft.mins },
-    { label: t('hero.countdown.secs'), value: timeLeft.secs }
+    { key: 'days', label: t('hero.countdown.days'), value: timeLeft.days },
+    { key: 'hours', label: t('hero.countdown.hours'), value: timeLeft.hours },
+    { key: 'mins', label: t('hero.countdown.mins'), value: timeLeft.mins },
+    { key: 'secs', label: t('hero.countdown.secs'), value: timeLeft.secs },
   ];
 
+  const srLabel = timeBlocks.map((b) => `${Number(b.value)} ${b.label}`).join(', ');
+
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-4 bg-cover bg-center bg-no-repeat overflow-hidden"
-      style={{ backgroundImage: "url('/hero-pre-bg.jpg')" }} 
+      style={{ backgroundImage: "url('/hero-pre-bg.jpg')" }}
     >
       <div className="absolute inset-0 bg-orange-900/10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto flex flex-col items-center z-10 w-full px-2 -translate-y-7 md:-translate-y-6 lg:-translate-y-10">
-        
+
         {/* LOGO */}
         <div className="w-[120%] sm:w-full max-w-[450px] md:max-w-[500px] lg:max-w-[600px] -mb-6 md:-mb-14 relative z-20">
-          <img 
-            src="/v-africa-logo.png" 
-            alt={t('hero.logo_alt')} 
+          <img
+            src="/v-africa-logo.png"
+            alt={t('hero.logo_alt')}
             className="w-full h-auto mx-auto"
-            style={{ filter: "drop-shadow(0 0 15px rgba(249, 115, 22, 0.7))" }}
+            style={{ filter: 'drop-shadow(0 0 15px rgba(249, 115, 22, 0.7))' }}
           />
         </div>
-        
+
         {/* FLIP CLOCK COUNTDOWN */}
-        <div className="flex justify-center gap-3 md:gap-6 mb-4 md:mb-5 relative z-10" style={{ perspective: '1000px' }}>
+        <div
+          role="timer"
+          aria-label={srLabel}
+          className="flex justify-center items-start gap-2 md:gap-4 mb-4 md:mb-5 relative z-10"
+        >
           {timeBlocks.map((block, index) => (
-            <div key={index} className="flex flex-col items-center">
-              
-              <div className="flex gap-1 md:gap-1.5 mb-1 md:mb-2">
-                
-                {/* Tens Digit */}
-                <div 
-                  className="relative bg-white rounded w-7 h-10 md:w-10 md:h-14 lg:w-12 lg:h-16 flex justify-center items-center shadow-md overflow-hidden"
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))" }}
-                >
-                  <span 
-                    key={block.value[0]} 
-                    className="flip-animate font-barlow text-2xl md:text-4xl lg:text-5xl font-black text-[#3b1c8a] leading-none mt-1 absolute"
-                  >
-                    {block.value[0]}
-                  </span>
-                  <div className="absolute top-0 left-0 w-full h-1/2 bg-black/5 pointer-events-none border-b-[2px] border-black/10 z-10" />
+            <div key={block.key} className="flex items-start gap-2 md:gap-4" aria-hidden="true">
+              <div className="flex flex-col items-center">
+                <div className="flex gap-1 md:gap-1.5 mb-1 md:mb-2">
+                  {block.value.split('').map((d, i) => (
+                    <FlipDigit key={i} digit={d} reducedMotion={reducedMotion} />
+                  ))}
                 </div>
-
-                {/* Ones Digit */}
-                <div 
-                  className="relative bg-white rounded w-7 h-10 md:w-10 md:h-14 lg:w-12 lg:h-16 flex justify-center items-center shadow-md overflow-hidden"
-                  style={{ filter: "drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))" }}
+                <span
+                  className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase"
+                  style={{ textShadow: '0 0 8px rgba(249, 115, 22, 0.9), 1px 1px 2px rgba(0,0,0,0.8)' }}
                 >
-                  <span 
-                    key={block.value[1]} 
-                    className="flip-animate font-barlow text-2xl md:text-4xl lg:text-5xl font-black text-[#3b1c8a] leading-none mt-1 absolute"
-                  >
-                    {block.value[1]}
-                  </span>
-                  <div className="absolute top-0 left-0 w-full h-1/2 bg-black/5 pointer-events-none border-b-[2px] border-black/10 z-10" />
-                </div>
-
+                  {block.label}
+                </span>
               </div>
-              
-              <span 
-                className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase"
-                style={{ textShadow: "0 0 8px rgba(249, 115, 22, 0.9), 1px 1px 2px rgba(0,0,0,0.8)" }}
-              >
-                {block.label}
-              </span>
+
+              {/* Colon separator between blocks */}
+              {index < timeBlocks.length - 1 && (
+                <div className="vf-colon h-10 md:h-14 lg:h-16">
+                  <span /><span />
+                </div>
+              )}
             </div>
           ))}
         </div>
 
         {/* Main Heading */}
-        <h1 
-          className="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-1 md:gap-2 uppercase tracking-wide mb-2 md:mb-3 drop-shadow-lg leading-none w-full px-2" 
-          style={{ textShadow: "0 0 20px rgba(249, 115, 22, 0.85), 0 0 8px rgba(249, 115, 22, 0.5)" }}
+        <h1
+          className="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-1 md:gap-2 uppercase tracking-wide mb-2 md:mb-3 drop-shadow-lg leading-none w-full px-2"
+          style={{ textShadow: '0 0 20px rgba(249, 115, 22, 0.85), 0 0 8px rgba(249, 115, 22, 0.5)' }}
         >
           {/* White Text Span (Includes НА for Russian) */}
-          <span 
+          <span
             className={`font-apotek font-bold text-white text-center md:whitespace-nowrap ${
-              isFrench 
-                ? 'text-2xl md:text-4xl lg:text-[2.6rem] xl:text-[3rem]' 
-                : isRussian 
-                ? 'text-2xl md:text-4xl lg:text-[2.8rem] xl:text-[3.2rem]' 
+              isFrench
+                ? 'text-2xl md:text-4xl lg:text-[2.6rem] xl:text-[3rem]'
+                : isRussian
+                ? 'text-2xl md:text-4xl lg:text-[2.8rem] xl:text-[3.2rem]'
                 : 'text-3xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem]'
             }`}
             dangerouslySetInnerHTML={{ __html: t('hero.heading_part1') }}
           />
 
           {/* Purple Text Span (Only V-AFRICA 2026!) */}
-          <span 
+          <span
             className={`font-barlow font-black text-[#3b1c8a] text-center md:whitespace-nowrap mt-1 md:mt-0 ${
-              isFrench 
-                ? 'text-3xl md:text-5xl lg:text-[3.2rem] xl:text-[3.8rem]' 
-                : isRussian 
-                ? 'text-3xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem]' 
+              isFrench
+                ? 'text-3xl md:text-5xl lg:text-[3.2rem] xl:text-[3.8rem]'
+                : isRussian
+                ? 'text-3xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem]'
                 : 'text-4xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem]'
             }`}
           >
             {t('hero.heading_part2')}
           </span>
         </h1>
-        
+
         {/* Event Date Subtitle */}
-        <h2 
+        <h2
           className="text-xl md:text-3xl lg:text-4xl font-black tracking-wide text-[#c5281c] mb-6 md:mb-8 drop-shadow-md text-center"
-          style={{ textShadow: "0 0 12px rgba(249, 115, 22, 0.9)" }}
+          style={{ textShadow: '0 0 12px rgba(249, 115, 22, 0.9)' }}
         >
           {t('hero.event_date')}
         </h2>
 
         {/* CTA Button */}
-        <a 
-          href="https://vshoppepro.vtube.net/" 
-          target="_blank" 
+        <a
+          href="https://vshoppepro.vtube.net/"
+          target="_blank"
           rel="noopener noreferrer"
           className="relative inline-block group w-[90%] md:w-auto"
         >
-          <div 
+          <div
             className="bg-gradient-to-r from-green-600 to-green-700 bg-cover bg-center border-y border-yellow-400 px-4 py-3 md:px-12 md:py-4 shadow-2xl transition-transform group-hover:scale-105 duration-300 flex items-center justify-center"
-            style={{ 
+            style={{
               clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)',
               backgroundImage: "url('/hero-button-cta.png')",
-              filter: "drop-shadow(0 0 10px rgba(249, 115, 22, 0.7))"
+              filter: 'drop-shadow(0 0 10px rgba(249, 115, 22, 0.7))',
             }}
           >
             <span className="text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] text-center">
@@ -180,13 +238,127 @@ export default function Hero() {
       </div>
 
       <style>{`
-        @keyframes flipDown {
-          0% { transform: rotateX(90deg); opacity: 0; }
-          100% { transform: rotateX(0deg); opacity: 1; }
+        /* ---------- Split-flap card ---------- */
+        .vf-card {
+          perspective: 300px;
+          border-radius: 0.3rem;
+          box-shadow:
+            0 6px 12px rgba(59, 28, 138, 0.25),
+            0 2px 3px rgba(0, 0, 0, 0.2);
         }
-        .flip-animate {
-          animation: flipDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          transform-origin: top;
+
+        .vf-half {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 50%;
+          overflow: hidden;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+        .vf-half > span {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 200%;            /* full card height, clipped to one half */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .vf-top {
+          top: 0;
+          border-radius: 0.3rem 0.3rem 0 0;
+          background: linear-gradient(180deg, #ffffff 0%, #f1edf9 100%);
+        }
+        .vf-top > span { top: 0; }
+
+        .vf-bottom {
+          bottom: 0;
+          border-radius: 0 0 0.3rem 0.3rem;
+          background: linear-gradient(180deg, #e9e4f5 0%, #ffffff 35%);
+        }
+        .vf-bottom > span { bottom: 0; }
+
+        /* ---------- Moving leaves ---------- */
+        .vf-flap-top {
+          z-index: 3;
+          transform-origin: 50% 100%;
+          animation: vfFlapTop ${FLIP_MS / 2}ms cubic-bezier(0.55, 0, 0.85, 0.35) forwards;
+        }
+        .vf-flap-bottom {
+          z-index: 3;
+          transform-origin: 50% 0%;
+          transform: rotateX(90deg);
+          animation: vfFlapBottom ${FLIP_MS / 2}ms cubic-bezier(0.2, 0.7, 0.35, 1.25) ${FLIP_MS / 2}ms forwards;
+        }
+
+        /* Shading that darkens a leaf as it turns away from the light */
+        .vf-flap-top::after,
+        .vf-flap-bottom::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(180deg, rgba(59, 28, 138, 0) 0%, rgba(59, 28, 138, 0.35) 100%);
+        }
+        .vf-flap-top::after    { opacity: 0; animation: vfShadeIn  ${FLIP_MS / 2}ms ease-in forwards; }
+        .vf-flap-bottom::after { opacity: 1; animation: vfShadeOut ${FLIP_MS / 2}ms ease-out ${FLIP_MS / 2}ms forwards; }
+
+        @keyframes vfFlapTop    { from { transform: rotateX(0deg); }  to { transform: rotateX(-90deg); } }
+        @keyframes vfFlapBottom { from { transform: rotateX(90deg); } to { transform: rotateX(0deg); } }
+        @keyframes vfShadeIn    { to { opacity: 1; } }
+        @keyframes vfShadeOut   { to { opacity: 0; } }
+
+        /* ---------- Hinge ---------- */
+        .vf-hinge {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 2px;
+          transform: translateY(-1px);
+          background: rgba(59, 28, 138, 0.18);
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+          z-index: 4;
+          pointer-events: none;
+        }
+        .vf-hinge::before,
+        .vf-hinge::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          width: 4px;
+          height: 8px;
+          transform: translateY(-50%);
+          background: rgba(59, 28, 138, 0.35);
+        }
+        .vf-hinge::before { left: 0;  border-radius: 0 4px 4px 0; }
+        .vf-hinge::after  { right: 0; border-radius: 4px 0 0 4px; }
+
+        /* ---------- Colon between blocks ---------- */
+        .vf-colon {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 0.45rem;
+        }
+        .vf-colon > span {
+          width: 5px;
+          height: 5px;
+          border-radius: 9999px;
+          background: #ffffff;
+          box-shadow: 0 0 6px rgba(249, 115, 22, 0.9);
+          animation: vfPulse 1s ease-in-out infinite;
+        }
+        @media (min-width: 768px) {
+          .vf-colon { gap: 0.6rem; }
+          .vf-colon > span { width: 7px; height: 7px; }
+        }
+        @keyframes vfPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+        @media (prefers-reduced-motion: reduce) {
+          .vf-colon > span { animation: none; }
         }
       `}</style>
     </section>
