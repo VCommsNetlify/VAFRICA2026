@@ -1,22 +1,5 @@
 [
-  {
-    "q": {
-      "en": "When and where is V-AFRICA 2027 taking place?",
-      "fr": "Quand et où a lieu le V-AFRICA 2027 ?",
-      "ru": "Когда и где состоится V-AFRICA 2026?",
-      "ar": "متى وأين سيعقد V-AFRICA 2026؟",
-      "id": "Kapan dan di mana V-AFRICA 2026 berlangsung?",
-      "tr": "V-AFRICA 2026 ne zaman ve nerede gerçekleşecek?"
-    },
-    "a": {
-      "en": "V-AFRICA 2027 is happening on March 2027.",
-      "fr": "L’événement V-AFRICA 2027 aura lieu en mars 2027.",
-      "ru": "Мероприятие V-AFRICA 2027 пройдет в марте 2027 года.",
-      "ar": "تُقام فاعلية V-AFRICA 2027 في مارس 2027.",
-      "id": "V-AFRICA 2027 akan berlangsung pada Maret 2027.",
-      "tr": "V-AFRICA 2027, Mart 2027'de gerçekleşiyor."
-    }
-  },
+  
   {
     "q": {
       "en": "How can I purchase V-AFRICA 2027 tickets?",

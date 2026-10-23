@@ -8,6 +8,9 @@ import { useTranslation } from 'react-i18next';
 /* ------------------------------------------------------------------ */
 const SHOW_COUNTDOWN = false;
 
+// The event date line under the heading. Set to true to show it again.
+const SHOW_EVENT_DATE = false;
+
 const EVENT_START = Date.parse('2026-11-18T00:00:00Z');
 
 const FLIP_MS = 600; // total flip duration (top half + bottom half)
@@ -192,7 +195,9 @@ export default function Hero() {
 
         {/* Main Heading */}
         <h1
-          className="flex flex-col md:flex-row md:flex-wrap items-center md:items-baseline justify-center gap-1 md:gap-x-2 uppercase tracking-wide mb-2 md:mb-3 drop-shadow-lg leading-none w-full px-2"
+          className={`flex flex-col md:flex-row md:flex-wrap items-center md:items-baseline justify-center gap-1 md:gap-x-2 uppercase tracking-wide drop-shadow-lg leading-none w-full px-2 ${
+            SHOW_EVENT_DATE ? 'mb-2 md:mb-3' : 'mb-6 md:mb-8'
+          }`}
           style={{ textShadow: '0 0 20px rgba(249, 115, 22, 0.85), 0 0 8px rgba(249, 115, 22, 0.5)' }}
         >
           {/* White Text Span (Includes НА for Russian) */}
@@ -221,13 +226,15 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Event Date Subtitle */}
-        <h2
-          className="text-xl md:text-3xl lg:text-4xl font-black tracking-wide text-[#c5281c] mb-6 md:mb-8 drop-shadow-md text-center"
-          style={{ textShadow: '0 0 12px rgba(249, 115, 22, 0.9)' }}
-        >
-          {t('hero.event_date')}
-        </h2>
+        {/* Event Date Subtitle (hidden for now) */}
+        {SHOW_EVENT_DATE && (
+          <h2
+            className="text-xl md:text-3xl lg:text-4xl font-black tracking-wide text-[#c5281c] mb-6 md:mb-8 drop-shadow-md text-center"
+            style={{ textShadow: '0 0 12px rgba(249, 115, 22, 0.9)' }}
+          >
+            {t('hero.event_date')}
+          </h2>
+        )}
 
         {/* CTA Button */}
         <a
