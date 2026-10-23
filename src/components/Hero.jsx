@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+/* ------------------------------------------------------------------ */
+/*  POSTPONEMENT SWITCH                                                 */
+/*  V-Africa is postponed to March 2027, so the countdown is hidden.    */
+/*  Set this back to true (and update EVENT_START) to bring it back.    */
+/* ------------------------------------------------------------------ */
+const SHOW_COUNTDOWN = false;
+
 const EVENT_START = Date.parse('2026-11-18T00:00:00Z');
 
 const FLIP_MS = 600; // total flip duration (top half + bottom half)
@@ -102,6 +109,7 @@ export default function Hero() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
 
   useEffect(() => {
+    if (!SHOW_COUNTDOWN) return; // no ticking while the countdown is hidden
     let id;
     const tick = () => {
       const next = getTimeLeft();
@@ -133,51 +141,58 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto flex flex-col items-center z-10 w-full px-2 -translate-y-7 md:-translate-y-6 lg:-translate-y-10">
 
-        {/* LOGO */}
-        <div className="w-[120%] sm:w-full max-w-[450px] md:max-w-[500px] lg:max-w-[600px] -mb-6 md:-mb-14 relative z-20">
+        {/* LOGO
+            The 2027 logo file is cropped tighter than the old one (no empty
+            space around the badge), so it needs a smaller box and no negative
+            bottom margin. Adjust the max-w-[...] values to resize it. */}
+        <div className="w-[75%] sm:w-full max-w-[270px] md:max-w-[300px] lg:max-w-[360px] mb-3 md:mb-5 relative z-20">
           <img
-            src="/v-africa-logo.png"
+            src="/v-africa2027-logo.png"
             alt={t('hero.logo_alt')}
             className="w-full h-auto mx-auto"
             style={{ filter: 'drop-shadow(0 0 15px rgba(249, 115, 22, 0.7))' }}
           />
         </div>
 
-        {/* FLIP CLOCK COUNTDOWN */}
-        <div
-          role="timer"
-          aria-label={srLabel}
-          className="flex justify-center items-start gap-2 md:gap-4 mb-4 md:mb-5 relative z-10"
-        >
-          {timeBlocks.map((block, index) => (
-            <div key={block.key} className="flex items-start gap-2 md:gap-4" aria-hidden="true">
-              <div className="flex flex-col items-center">
-                <div className="flex gap-1 md:gap-1.5 mb-1 md:mb-2">
-                  {block.value.split('').map((d, i) => (
-                    <FlipDigit key={i} digit={d} reducedMotion={reducedMotion} />
-                  ))}
+        {SHOW_COUNTDOWN ? (
+          /* FLIP CLOCK COUNTDOWN (hidden while the event is postponed) */
+          <div
+            role="timer"
+            aria-label={srLabel}
+            className="flex justify-center items-start gap-2 md:gap-4 mb-4 md:mb-5 relative z-10"
+          >
+            {timeBlocks.map((block, index) => (
+              <div key={block.key} className="flex items-start gap-2 md:gap-4" aria-hidden="true">
+                <div className="flex flex-col items-center">
+                  <div className="flex gap-1 md:gap-1.5 mb-1 md:mb-2">
+                    {block.value.split('').map((d, i) => (
+                      <FlipDigit key={i} digit={d} reducedMotion={reducedMotion} />
+                    ))}
+                  </div>
+                  <span
+                    className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase"
+                    style={{ textShadow: '0 0 8px rgba(249, 115, 22, 0.9), 1px 1px 2px rgba(0,0,0,0.8)' }}
+                  >
+                    {block.label}
+                  </span>
                 </div>
-                <span
-                  className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase"
-                  style={{ textShadow: '0 0 8px rgba(249, 115, 22, 0.9), 1px 1px 2px rgba(0,0,0,0.8)' }}
-                >
-                  {block.label}
-                </span>
-              </div>
 
-              {/* Colon separator between blocks */}
-              {index < timeBlocks.length - 1 && (
-                <div className="vf-colon h-10 md:h-14 lg:h-16">
-                  <span /><span />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                {/* Colon separator between blocks */}
+                {index < timeBlocks.length - 1 && (
+                  <div className="vf-colon h-10 md:h-14 lg:h-16">
+                    <span /><span />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          null /* countdown hidden while the event is postponed */
+        )}
 
         {/* Main Heading */}
         <h1
-          className="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-1 md:gap-2 uppercase tracking-wide mb-2 md:mb-3 drop-shadow-lg leading-none w-full px-2"
+          className="flex flex-col md:flex-row md:flex-wrap items-center md:items-baseline justify-center gap-1 md:gap-x-2 uppercase tracking-wide mb-2 md:mb-3 drop-shadow-lg leading-none w-full px-2"
           style={{ textShadow: '0 0 20px rgba(249, 115, 22, 0.85), 0 0 8px rgba(249, 115, 22, 0.5)' }}
         >
           {/* White Text Span (Includes НА for Russian) */}
@@ -192,7 +207,7 @@ export default function Hero() {
             dangerouslySetInnerHTML={{ __html: t('hero.heading_part1') }}
           />
 
-          {/* Purple Text Span (Only V-AFRICA 2026!) */}
+          {/* Purple Text Span (V-AFRICA 2027!) */}
           <span
             className={`font-barlow font-black text-[#3b1c8a] text-center md:whitespace-nowrap mt-1 md:mt-0 ${
               isFrench

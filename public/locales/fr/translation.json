@@ -9,14 +9,14 @@
   "hero": {
     "logo_alt": "Logo V-AFRICA 2026",
     "countdown": { "days": "JOURS", "hours": "HEURES", "mins": "MIN", "secs": "SEC" },
-    "heading_part1": "PRÉPAREZ-VOUS À REVENIR À LA MAISON POUR LE",
-    "heading_part2": "V-AFRICA 2026 !",
-    "event_date": "17-20 NOVEMBRE 2026",
+    "heading_part1": "Restez à l'écoute pour plus d'informations sur",
+    "heading_part2": "V-AFRICA 2027 !",
+    "event_date": "MARS 2027",
     "cta_button": "Les billets sont disponibles DÈS MAINTENANT sur VShoppe Pro"
   },
   "stories": {
     "banner": "ACTUALITÉS & MISES À JOUR DE L'ÉVÉNEMENT",
-    "subheader": "Soyez toujours informé de ce qui se passe au V-AFRICA 2026 !",
+    "subheader": "Soyez toujours informé de ce qui se passe au V-AFRICA 2027 !",
     "featured": "À LA UNE"
   },
   "filter": {

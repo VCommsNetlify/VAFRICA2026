@@ -59,9 +59,9 @@ export default function Footer() {
         {/* Column 1: Brand & Newsletter */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <div className="flex items-center gap-3 mb-6">
-            <img src="/v-africa-logo.png" alt="V-Africa Logo" className="h-10 md:h-12 w-auto" />
+            <img src="/v-africa2027-logo.png" alt="V-Africa Logo" className="h-10 md:h-12 w-auto" />
             <h3 className="font-barlow font-black text-xl md:text-2xl tracking-wider drop-shadow-sm">
-              V-AFRICA 2026
+              V-AFRICA 2027
             </h3>
           </div>
 
@@ -158,7 +158,7 @@ export default function Footer() {
 
       {/* Copyright Line */}
       <div className="max-w-7xl mx-auto mt-12 md:mt-16 text-center font-barlow text-[10px] md:text-xs text-white/70 relative z-10">
-        &copy; V-AFRICA 2026<br />
+        &copy; V-AFRICA 2027<br />
         All Rights Reserved.
       </div>
     </footer>

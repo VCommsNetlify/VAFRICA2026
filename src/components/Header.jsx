@@ -85,12 +85,12 @@ export default function Header() {
         {/* LOGO */}
         <a href="#home" onClick={(e) => handleSmoothScroll(e, '#home')} className="flex items-center gap-3 group">
           <img 
-            src="/v-africa-logo-2.png" 
+            src="/v-africa2027-logo.png" 
             alt="V-Africa Logo" 
             className="h-9 md:h-11 w-auto transition-transform group-hover:scale-105"
           />
           <span className="font-barlow font-black text-white text-base md:text-lg tracking-wider hidden sm:inline-block">
-            V-AFRICA 2026
+            V-AFRICA 2027
           </span>
         </a>
 
